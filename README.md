@@ -1,6 +1,6 @@
 # find_dc
 
-`find_dc` is a Go-based tool designed to process the output of the `nxc` command, identify domain controllers, and generate the necessary `/etc/hosts` entries. It automatically fetches the domain controller for each domain, enriching your network configuration.
+`find_dc` is a Go-based tool designed to process the output of the `nxc` command, identify domain controllers, and generate the necessary `/etc/hosts` entries. It automatically fetches the domain controller for each domain.
 
 ## Features
 
@@ -19,7 +19,6 @@
 - [Examples](#examples)
 - [Flags](#flags)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
@@ -27,7 +26,7 @@ To use `find_dc`, you need to have Go installed on your machine. You can install
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/find_dc.git
+   git clone https://github.com/0xTheFr34k/find_dc.git
    cd find_dc
    ```
 
@@ -170,6 +169,4 @@ If you'd like to contribute to this project, feel free to open an issue or submi
 6. Open a pull request.
 
 ---
-
-💡 **Tip**: This tool helps streamline the process of managing IP and domain controller information.
 
