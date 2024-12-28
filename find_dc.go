@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"os"
 	"os/exec"
@@ -29,6 +30,17 @@ func findDomainController(domain string, dnsServer string) (string, error) {
 }
 
 func main() {
+	// Define the help flag
+	helpFlag := flag.Bool("help", false, "Display help information")
+	hFlag := flag.Bool("h", false, "Display help information")
+	flag.Parse()
+
+	// Display help information if --help or -h is provided
+	if *helpFlag || *hFlag {
+		printHelp()
+		return
+	}
+
 	re := regexp.MustCompile(`(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+\d+\s+(\w+).*\(domain:([^)]+)`)
 
 	var entries []string
@@ -68,4 +80,22 @@ func main() {
 	} else {
 		fmt.Println("No valid IP, hostname, and domain pairs found in the input.")
 	}
+}
+
+// Function to display help information
+func printHelp() {
+	fmt.Println(`Usage: find_dc [OPTIONS]
+
+Description:
+  A Go tool to parse 'nxc' output, find domain controllers, and generate /etc/hosts entries.
+
+Options:
+  -h, --help    Display this help message and exit
+
+Examples:
+  nxc smb 192.168.56.10-12 | find_dc
+  nxc smb 192.168.56.10-12 | find_dc --help
+
+Output:
+  The tool prints /etc/hosts entries in a table format.`)
 }
